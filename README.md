@@ -1,63 +1,44 @@
-<<<<<<< HEAD
-# TUGAS-API
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Library API Project (Laravel + CodeIgniter 4)
+Selamat datang di proyek Library API, sebuah sistem manajemen perpustakaan sederhana yang dibangun dengan arsitektur decoupled. Proyek ini memisahkan antara penyedia data (Back-End) dan penampil data (Front-End). Laravel berperan sebagai API Provider yang mengelola database dan logika bisnis, sementara CodeIgniter 4 berperan sebagai API Consumer yang menyajikan antarmuka pengguna kepada publik. Dengan pemisahan ini, aplikasi menjadi lebih fleksibel dan mudah dikembangkan di masa depan.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+rasyarat Sistem
+Sebelum menjalankan proyek, pastikan perangkat kamu telah memenuhi spesifikasi berikut:
 
-## About Laravel
+PHP: Versi 8.1 atau yang lebih baru.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Composer: Alat manajemen dependensi PHP.
+Database: MySQL atau MariaDB (direkomendasikan menggunakan XAMPP).
+Web Browser: Chrome, Firefox, atau Edge versi terbaru.
+Postman: Opsional, namun sangat disarankan untuk pengujian endpoint API secara mandiri.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+##Langkah-Langkah Instalasi dan Menjalankan Proyek
+1. Persiapan Database
+Pertama, kamu perlu menyiapkan wadah datanya di MySQL:
+Buka panel kontrol XAMPP dan aktifkan modul Apache serta MySQL.
+Buka browser dan akses localhost/phpmyadmin.
+Buat database baru dengan nama library_api.
+Jika kamu memiliki file dump SQL, silakan import ke dalam database tersebut. Jika tidak, kamu bisa menggunakan fitur Migration pada langkah berikutnya.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. Konfigurasi Server Back-End (Laravel)
+Server ini akan berjalan di port default 8000.
+Buka terminal atau command prompt, lalu masuk ke folder project Laravel.
+Jalankan perintah composer install untuk mengunduh semua library yang dibutuhkan.
+Salin file konfigurasi dengan perintah cp .env.example .env.
+Buka file .env dan sesuaikan pengaturan database:
+DB_DATABASE=library_api
+DB_USERNAME=root
+DB_PASSWORD= (kosongkan jika menggunakan standar XAMPP).
+Generate kunci aplikasi dengan perintah php artisan key:generate.
+Jalankan migrasi tabel ke database dengan perintah php artisan migrate --seed.
+Terakhir, jalankan server dengan perintah php artisan serve.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> d13475b (Initial commit - clean start)
+3. Konfigurasi Server Front-End (CodeIgniter 4)
+Server ini akan dijalankan di port 8081 agar tidak bentrok dengan Laravel.
+Buka terminal baru dan masuk ke folder project CodeIgniter 4.
+Jalankan perintah composer install.
+Salin file lingkungan dengan perintah cp env .env.
+Buka file .env dan pastikan baris berikut sudah sesuai:
+CI_ENVIRONMENT = development (agar error terlihat jelas).
+app.baseURL = 'http://localhost:8081/'
+API_URL = 'http://localhost:8000/api/' (mengarahkan CI4 ke server Laravel).
+Jalankan server CI4 dengan perintah php spark serve --port 8081.
